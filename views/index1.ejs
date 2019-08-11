@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+  <script>
+    $(document).on('click', '#btn submit' ,function() {
+      var reqdata = {'author': $('#author').val (), 
+                     'content': $('#content').val (),
+                     'createTime': new Date(yyyy,mth,dd,hh,mm,ss)};
+      $.ajax({
+        url: '/posts',
+        type: 'post',
+        data: reqdata
+      }).done (function (result){
+        alert("ok!");
+        
+        //$("#itemset").html (result);
+      });
+    })
+
+    $(document).on('click', '.btn-delete' ,function() {
+      var element = $(this);
+      var id = element.attr('data-id');
+      $.ajax({
+        url: '/posts/delete/' + id,
+        success: function(response) {
+          if (response.status === 'SUCCESS') {
+
+            // 自己刪除這篇文章
+            element.parents('.panel').fadeOut();
+          } else {
+            alert('刪除失敗');
+          }
+        },
+        error: function(err) {
+          console.log(err);
+          alert('刪除失敗');
+        }
+      })
+    })
+    
+  </script>
+  <link rel="stylesheet" type="text/css" href="./public/style.css">
+  <script type="text/javascript">
+    <!--
+    function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+    }
+    //-->
+    </script>
+</head>
+<body>
+  <div class="container">
+    <% if (username) { %>
+      <a class="btn btn-default" href="/logout">登出</a>
+    <% } else { %>
+      <a class="btn btn-default" href="/login">登入</a>
+    <% } %>
+
+    <a class="btn btn-primary"  onclick="toggle_visibility('popup-box1');">發表新留言</a>
+    <h2>留言列表</h2>
+    <div>
+      <% for(var i=0; i<posts.length; i++) { %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= posts[i].author %>, 發佈時間：<%= posts[i].createTime %></h3>
+          </div>
+          <div class="panel-body">
+            <%= posts[i].content  %>
+            <% if (isAdmin) { %>
+              <a class="btn-delete" data-id="<%= posts[i]._id %>">刪除</a>
+            <% } %>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+  <!--
+
+  -->
+  <div id="popup-box1" class="popup-position">
+    <div id="popup-wrapper">
+      <div id="popup-container">
+        <form method="post" action="/posts">
+          <div class="form-group">
+            <label for="author">作者</label>
+            <input name="author" class="form-control" id="author" placeholder="author">
+          </div>
+          <div class="form-group">
+            <label >內容</label>
+            <textarea name="content" id="content"></textarea>
+          </div>
+          <button type="submit" class="btn btn-default" id="btn submit">送出</button>
+          <button type="button" onclick="toggle_visibility('popup-box1');">關閉</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
