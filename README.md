@@ -18,7 +18,7 @@
   `popup box(模組塊)`
   ![image](https://github.com/JohnnyOfSnow/BBS_pratice/blob/master/demo_image/popup_box.jpg)
 
-  1.該頁面的程式碼於<head>範圍內引用下列程式碼。
+  **1.該頁面的程式碼於<head>範圍內引用下列程式碼。**
 
   ```js
 	  function toggle_visibility(id) {
@@ -29,21 +29,28 @@
 	          e.style.display = 'block';
 	   }
   ```
-  2.建立模組塊的html組件,在這裡id設為popup-box1(範圍內可以加入<label><textarea><input><button>),把它當作另一個html文件寫就好。
+  **2.建立模組塊的html組件,在這裡id設為popup-box1(範圍內可以加入<label><textarea><input><button>),把它當作另一個html文件寫就好。**
 
   ```html
 	  <div id="popup-box1" class="popup-position">
-	      //can add <label> <textarea> <input> <button>...
+	  	<div id="popup-wrapper">
+      		<div id="popup-container">
+	      		//can add <label> <textarea> <input> <button>...
+	      	</div>
+	    </div>
 	  </div>
   ```
+  **3.建立CSS文件，對popup-position、popup-wrapper、popup-container進行渲染**
 
-  3.按鈕的onclick方法指向toggle_visibility,參數指向模組塊的id。
+  ![image](https://github.com/JohnnyOfSnow/BBS_pratice/blob/master/demo_image/popup_box_structure)
+
+  **4.按鈕的onclick方法指向toggle_visibility,參數指向模組塊的id。**
 
   ```html
   onclick="toggle_visibility('popup-box1')
   ```
 
-  4.要關閉模組塊，只要在模組塊內新增一個按鈕，然後onclick方法再次指向模組塊就好。
+  **5.要關閉模組塊，只要在模組塊內新增一個按鈕，然後onclick方法再次指向模組塊就好。**
 
   ```html
   <button type="button" onclick="toggle_visibility('popup-box1');">關閉</button>
