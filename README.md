@@ -40,14 +40,17 @@
 	    </div>
 	  </div>
   ```
-  **3.建立CSS文件，對popup-position、popup-wrapper、popup-container進行渲染**
+  **3.建立CSS文件，對popup-position、popup-wrapper、popup-container進行渲染,別忘了要在頁面引用這個CSS文件**
 
   ![image](https://github.com/JohnnyOfSnow/BBS_pratice/blob/master/demo_image/popup_box_structure.jpg)
 
+  ```html 
+  	<link rel="stylesheet" type="text/css" href="./public/style.css">
+  ``` 
   **4.按鈕的onclick方法指向toggle_visibility,參數指向模組塊的id。**
 
   ```html
-  onclick="toggle_visibility('popup-box1')
+    onclick="toggle_visibility('popup-box1')
   ```
 
   **5.要關閉模組塊，只要在模組塊內新增一個按鈕，然後onclick方法再次指向模組塊就好。**

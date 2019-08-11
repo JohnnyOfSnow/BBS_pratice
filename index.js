@@ -72,7 +72,7 @@ app.post('/posts', function (req, res) {
   var dataSet = [{
     author: req.body.author,
     content: req.body.content,
-    createTime: req.body.createTime
+    createTime: new Date()
   }];
   
   modelCreate.InsertNew(dataSet, function (err, data) {
