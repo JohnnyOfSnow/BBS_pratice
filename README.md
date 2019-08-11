@@ -42,7 +42,7 @@
   ```
   **3.建立CSS文件，對popup-position、popup-wrapper、popup-container進行渲染**
 
-  ![image](https://github.com/JohnnyOfSnow/BBS_pratice/blob/master/demo_image/popup_box_structure)
+  ![image](https://github.com/JohnnyOfSnow/BBS_pratice/blob/master/demo_image/popup_box_structure.jpg)
 
   **4.按鈕的onclick方法指向toggle_visibility,參數指向模組塊的id。**
 
